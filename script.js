@@ -11,7 +11,9 @@ function loadPage() {
 
 function findChapter(n) {
   let convertChapter = Array.from(chapters())[n];
-  console.log(convertChapter);
+  currentChapter = n;
+  console.log(currentChapter);
+  pageNav();
   return convertChapter;
 }
 
@@ -24,7 +26,6 @@ function readTextFile(n) {
     if (rawFile.readyState === 4) {
       if (rawFile.status === 200 || rawFile.status == 0) {
         var allText = rawFile.responseText;
-        // console.log("rTF pass");
         let display = document.getElementById("story");
         let convertText = parseMarkdown(allText);
 
@@ -44,6 +45,7 @@ function parseMarkdown(markdownText) {
     .replace(/^\> (.*$)/gim, "<blockquote>$1</blockquote>")
     .replace(/\*\*(.*)\*\*/gim, "<b>$1</b>")
     .replace(/\*(.*)\*/gim, "<i>$1</i>")
+    .replace(/\_(.*)\_/gim, "<i>$1</i>")
     .replace(/!\[(.*?)\]\((.*?)\)/gim, "<img alt='$1' src='$2' />")
     .replace(/\[(.*?)\]\((.*?)\)/gim, "<a href='$2'>$1</a>")
     .replace(/\n$/gim, "<br><br>");
@@ -53,18 +55,19 @@ function parseMarkdown(markdownText) {
 
 function previousChapter() {
   readTextFile(currentChapter - 1);
-  currentChapter = currentChapter - 1;
   pageNav();
+  document.body.scrollTop = 0; // For Safari
+  document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
 }
 
 function nextChapter() {
   readTextFile(currentChapter + 1);
-  currentChapter = currentChapter + 1;
   pageNav();
+  document.body.scrollTop = 0; // For Safari
+  document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
 }
 
 function pageNav() {
-  console.log("nav loaded");
   let pageNavBar = document.getElementById("page-nav");
 
   pageNavBar.innerHTML = `
@@ -74,12 +77,12 @@ function pageNav() {
   <li class="page-item" id="next"><a class="page-link" onClick="nextChapter()">Next</a></li>
 </ul>
   `;
-  if (currentChapter == 0) {
+  if (currentChapter <= 0) {
     document.getElementById("previous").classList.add("disabled");
   } else {
     document.getElementById("previous").classList.remove("disabled");
   }
-  if (currentChapter == Array.from(chapters()).length - 1) {
+  if (currentChapter >= Array.from(chapters()).length - 1) {
     document.getElementById("next").classList.add("disabled");
   } else {
     document.getElementById("next").classList.remove("disabled");
@@ -87,6 +90,7 @@ function pageNav() {
 }
 
 function about() {
+  document.getElementById("page-nav").innerHTML = "";
   document.getElementById("story").innerHTML = `
   <h1>About the Author</h1>
       <p>
@@ -104,5 +108,6 @@ function about() {
       <p>
         You can support his shenanigans by the following methods:
       </p>
+      <a href="https://www.buymeacoffee.com/rafiwiraTU" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" style="height: 40px !important;" ></a>
   `;
 }
