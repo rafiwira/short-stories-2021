@@ -1,3 +1,8 @@
 body {
-  background-color: RGBA(255, 249, 224, 1);
+  background-color: RGBA(255, 249, 224, 0.7);
+}
+
+[class="page-item"] > [class="page-link"] {
+  color: white !important;
+  background-color: rgba(0, 0, 0, 0.85) !important;
 }
