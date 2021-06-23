@@ -85,3 +85,24 @@ function pageNav() {
     document.getElementById("next").classList.remove("disabled");
   }
 }
+
+function about() {
+  document.getElementById("story").innerHTML = `
+  <h1>About the Author</h1>
+      <p>
+        Rafi Wira is a free-spirited author. He has always dreamed of telling
+        tall tales to people but had always thought that he was not good enough.
+        So as a resolution, he told himself to start writing stories and see how
+        well his stories are being received.
+      </p>
+    <h1>Support the Author</h1>
+      <p>
+        By supporting the author, you would hopefully help him pay his bills,
+        put meals on his table and for him to achieve his dream of being a
+        self-published author.
+      </p>
+      <p>
+        You can support his shenanigans by the following methods:
+      </p>
+  `;
+}
