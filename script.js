@@ -3,7 +3,7 @@ document.getElementsByTagName("body").onLoad = readTextFile();
 // code by https://stackoverflow.com/a/14446538
 function readTextFile() {
   var rawFile = new XMLHttpRequest();
-  rawFile.open("GET", "/README.md", false);
+  rawFile.open("GET", "stories/chapter1.md", false);
   rawFile.onreadystatechange = function () {
     if (rawFile.readyState === 4) {
       if (rawFile.status === 200 || rawFile.status == 0) {
