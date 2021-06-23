@@ -1,7 +1,10 @@
+let currentChapter = 0;
+
 window.onLoad = loadPage();
 
 function loadPage() {
   let newestChapter = Array.from(chapters()).length - 1;
+  currentChapter = newestChapter;
   readTextFile(newestChapter);
   pageNav();
 }
@@ -48,15 +51,37 @@ function parseMarkdown(markdownText) {
   return htmlText.trim();
 }
 
+function previousChapter() {
+  readTextFile(currentChapter - 1);
+  currentChapter = currentChapter - 1;
+  pageNav();
+}
+
+function nextChapter() {
+  readTextFile(currentChapter + 1);
+  currentChapter = currentChapter + 1;
+  pageNav();
+}
+
 function pageNav() {
   console.log("nav loaded");
   let pageNavBar = document.getElementById("page-nav");
 
   pageNavBar.innerHTML = `
   <ul class="pagination">
-  <li class="page-item"><a class="page-link" onClick="readTextFile(0)">Previous</a></li>
-  <li class="page-item"><a class="page-link">4</a></li>
-  <li class="page-item"><a class="page-link">Next</a></li>
+  <li class="page-item" id="previous"><a class="page-link" onClick="previousChapter()">Previous</a></li>
+  <li class="page-item"><a class="page-link">${currentChapter + 1}</a></li>
+  <li class="page-item" id="next"><a class="page-link" onClick="nextChapter()">Next</a></li>
 </ul>
   `;
+  if (currentChapter == 0) {
+    document.getElementById("previous").classList.add("disabled");
+  } else {
+    document.getElementById("previous").classList.remove("disabled");
+  }
+  if (currentChapter == Array.from(chapters()).length - 1) {
+    document.getElementById("next").classList.add("disabled");
+  } else {
+    document.getElementById("next").classList.remove("disabled");
+  }
 }
