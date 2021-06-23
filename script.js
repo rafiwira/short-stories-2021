@@ -1,16 +1,30 @@
-document.getElementsByTagName("body").onLoad = readTextFile();
+document.getElementsByTagName("body").onLoad = loadPage();
+
+function loadPage() {
+  let newestChapter = Array.from(chapters()).length - 1;
+  readTextFile(newestChapter);
+}
+
+function findChapter(n) {
+  let convertChapter = Array.from(chapters())[n];
+  console.log(convertChapter);
+  return convertChapter;
+}
 
 // code by https://stackoverflow.com/a/14446538
-function readTextFile() {
+function readTextFile(n) {
   var rawFile = new XMLHttpRequest();
-  rawFile.open("GET", "stories/chapter1.md", false);
+  console.log(findChapter(n));
+  rawFile.open("GET", "stories/" + findChapter(n), false);
   rawFile.onreadystatechange = function () {
     if (rawFile.readyState === 4) {
       if (rawFile.status === 200 || rawFile.status == 0) {
         var allText = rawFile.responseText;
-        console.log("rTF pass");
+        // console.log("rTF pass");
         let display = document.getElementById("story");
-        display.innerHTML = parseMarkdown(allText);
+        let convertText = parseMarkdown(allText);
+
+        display.innerHTML = `${convertText}`;
       }
     }
   };
@@ -28,7 +42,7 @@ function parseMarkdown(markdownText) {
     .replace(/\*(.*)\*/gim, "<i>$1</i>")
     .replace(/!\[(.*?)\]\((.*?)\)/gim, "<img alt='$1' src='$2' />")
     .replace(/\[(.*?)\]\((.*?)\)/gim, "<a href='$2'>$1</a>")
-    .replace(/\n$/gim, "<br />");
+    .replace(/\n$/gim, "<br><br>");
 
   return htmlText.trim();
 }
