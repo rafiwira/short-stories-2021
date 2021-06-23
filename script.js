@@ -1,8 +1,9 @@
-document.getElementsByTagName("body").onLoad = loadPage();
+window.onLoad = loadPage();
 
 function loadPage() {
   let newestChapter = Array.from(chapters()).length - 1;
   readTextFile(newestChapter);
+  pageNav();
 }
 
 function findChapter(n) {
@@ -45,4 +46,17 @@ function parseMarkdown(markdownText) {
     .replace(/\n$/gim, "<br><br>");
 
   return htmlText.trim();
+}
+
+function pageNav() {
+  console.log("nav loaded");
+  let pageNavBar = document.getElementById("page-nav");
+
+  pageNavBar.innerHTML = `
+  <ul class="pagination">
+  <li class="page-item"><a class="page-link" onClick="readTextFile(0)">Previous</a></li>
+  <li class="page-item"><a class="page-link">4</a></li>
+  <li class="page-item"><a class="page-link">Next</a></li>
+</ul>
+  `;
 }
