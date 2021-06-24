@@ -12,7 +12,6 @@ function loadPage() {
 function findChapter(n) {
   let convertChapter = Array.from(chapters())[n];
   currentChapter = n;
-  console.log(currentChapter);
   pageNav();
   return convertChapter;
 }
@@ -20,7 +19,6 @@ function findChapter(n) {
 // code by https://stackoverflow.com/a/14446538
 function readTextFile(n) {
   var rawFile = new XMLHttpRequest();
-  console.log(findChapter(n));
   rawFile.open("GET", "stories/" + findChapter(n), false);
   rawFile.onreadystatechange = function () {
     if (rawFile.readyState === 4) {
@@ -71,11 +69,11 @@ function pageNav() {
   let pageNavBar = document.getElementById("page-nav");
 
   pageNavBar.innerHTML = `
-  <ul class="pagination">
-  <li class="page-item" id="previous"><a class="page-link" onClick="previousChapter()">Previous</a></li>
-  <li class="page-item"><a class="page-link">${currentChapter + 1}</a></li>
-  <li class="page-item" id="next"><a class="page-link" onClick="nextChapter()">Next</a></li>
-</ul>
+  <ul class="pagination mt-3">
+    <li class="page-item" id="previous"><a class="page-link" onClick="previousChapter()">Previous</a></li>
+    <li class="page-item"><a class="page-link">${currentChapter + 1}</a></li>
+    <li class="page-item" id="next"><a class="page-link" onClick="nextChapter()">Next</a></li>
+  </ul>
   `;
   if (currentChapter <= 0) {
     document.getElementById("previous").classList.add("disabled");
