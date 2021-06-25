@@ -1,8 +1,8 @@
 let currentChapter = 0;
 
-window.onLoad = loadPage();
+window.onLoad = loadLatestStory();
 
-function loadPage() {
+function loadLatestStory() {
   let newestChapter = Array.from(chapters()).length - 1;
   currentChapter = newestChapter;
   readTextFile(newestChapter);
