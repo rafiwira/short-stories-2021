@@ -111,7 +111,41 @@ function about() {
 }
 
 function loadFrontPage() {
-  document.getElementById("story").innerHTML = `
-    <h1>Test</h1>
+  let createTable = `
+  <table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Chapter</th>
+      <th scope="col">Chapter Name</th>
+      <th scope="col">Date Uploaded</th>
+    </tr>
+  </thead>
+  <tbody>
+  </tbody>
+  </table>
   `;
+
+  document.getElementById("story").innerHTML += createTable;
+
+  let data = chapterData;
+
+  console.log(Object.keys(data).length);
+  let x = 0;
+
+  if (Object.keys(data).length <= 10) {
+    for (let i = x; i < Object.keys(data).length; i++) {
+      document.getElementsByTagName("tbody")[0].innerHTML += `
+      <tr>
+        <td>Chapter ${data[i]["chapter"]}</td>
+        <td>${data[i]["chapterName"]}</td>
+        <td> June </td>
+      </tr>`;
+    }
+  } else {
+    for (let i = x; i < Object.keys(data).length - (3 - x); i++) {
+      document.getElementsByTagName(
+        "tbody"
+      )[0].innerHTML += `<tr><td>${data[i]["chapter"]}</td></tr>`;
+    }
+  }
 }
