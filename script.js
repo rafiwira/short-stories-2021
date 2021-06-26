@@ -1,5 +1,8 @@
 let currentChapter = 0;
 
+let x = 5;
+let y = 0;
+
 window.onLoad = loadFrontPage();
 
 function loadLatestStory() {
@@ -126,14 +129,36 @@ function loadFrontPage() {
   `;
 
   document.getElementById("story").innerHTML += createTable;
+  loadTable("intial");
+}
 
+function loadTable(state) {
   let data = chapterData;
+  let jsonLength = Object.keys(data).length;
+  document.getElementsByTagName("tbody")[0].innerHTML = "";
+  document.getElementById("page-nav").innerHTML = `
+  <ul class="pagination">
+    <li class="page-item"><a class="page-link" onClick="loadTable('prev')" id="prevContent">Previous</a></li>
+    <li class="page-item"><a class="page-link" onClick="loadTable('next')" id="nextContent">Next</a></li>
+  </ul>
+    `;
+  if (state == "next" && jsonLength - x <= 0) {
+    document.getElementById("nextContent").removeAttribute("onclick");
+  } else if (state == "prev" && jsonLength - y >= jsonLength) {
+    document.getElementById("prevContent").removeAttribute("onclick");
+  } else if (state == "next") {
+    x = x + 5;
+    y = y + 5;
+  } else if (state == "prev") {
+    x = x - 5;
+    y = y - 5;
+  } else {
+    x = 5;
+    y = 0;
+  }
 
-  console.log(Object.keys(data).length);
-  let x = 0;
-
-  if (Object.keys(data).length <= 10) {
-    for (let i = x; i < Object.keys(data).length; i++) {
+  if (jsonLength <= 5) {
+    for (let i = Object.keys(data).length - 1; i >= x; i--) {
       document.getElementsByTagName("tbody")[0].innerHTML += `
       <tr>
         <td>Chapter ${data[i]["chapter"]}</td>
@@ -142,10 +167,26 @@ function loadFrontPage() {
       </tr>`;
     }
   } else {
-    for (let i = x; i < Object.keys(data).length - (3 - x); i++) {
-      document.getElementsByTagName(
-        "tbody"
-      )[0].innerHTML += `<tr><td>${data[i]["chapter"]}</td></tr>`;
+    let endRange = "";
+    let startRange = "";
+
+    if (jsonLength - x <= 0) {
+      endRange = 0;
+    } else {
+      endRange = jsonLength - x;
+    }
+    if (jsonLength - 1 - y >= jsonLength) {
+      startRange = jsonLength - 1;
+    } else {
+      startRange = jsonLength - 1 - y;
+    }
+    for (let i = startRange; i >= endRange; i--) {
+      document.getElementsByTagName("tbody")[0].innerHTML += `
+      <tr>
+        <td>Chapter ${data[i]["chapter"]}</td>
+        <td>${data[i]["chapterName"]}</td>
+        <td> June </td>
+      </tr>`;
     }
   }
 }
