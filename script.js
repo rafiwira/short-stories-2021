@@ -1,3 +1,5 @@
+let data = chapterData;
+
 let currentChapter = 0;
 
 let x = 5;
@@ -6,14 +8,14 @@ let y = 0;
 window.onLoad = loadFrontPage();
 
 function loadLatestStory() {
-  let newestChapter = Array.from(chapters()).length - 1;
+  let newestChapter = Object.keys(data).length - 1;
   currentChapter = newestChapter;
   readTextFile(newestChapter);
   pageNav();
 }
 
 function findChapter(n) {
-  let convertChapter = Array.from(chapters())[n];
+  let convertChapter = data[n]["filename"];
   currentChapter = n;
   pageNav();
   return convertChapter;
@@ -83,7 +85,7 @@ function pageNav() {
   } else {
     document.getElementById("previous").classList.remove("disabled");
   }
-  if (currentChapter >= Array.from(chapters()).length - 1) {
+  if (currentChapter >= Object.keys(data).length - 1) {
     document.getElementById("next").classList.add("disabled");
   } else {
     document.getElementById("next").classList.remove("disabled");
@@ -133,7 +135,6 @@ function loadFrontPage() {
 }
 
 function loadTable(state) {
-  let data = chapterData;
   let jsonLength = Object.keys(data).length;
   document.getElementsByTagName("tbody")[0].innerHTML = "";
   document.getElementById("page-nav").innerHTML = `
