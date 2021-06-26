@@ -76,7 +76,9 @@ function pageNav() {
   pageNavBar.innerHTML = `
   <ul class="pagination mt-3">
     <li class="page-item" id="previous"><a class="page-link" onClick="previousChapter()">Previous</a></li>
-    <li class="page-item"><a class="page-link">${currentChapter + 1}</a></li>
+    <li class="page-item"><a class="page-link">Chapter ${
+      currentChapter + 1
+    }</a></li>
     <li class="page-item" id="next"><a class="page-link" onClick="nextChapter()">Next</a></li>
   </ul>
   `;
@@ -116,6 +118,7 @@ function about() {
 }
 
 function loadFrontPage() {
+  document.getElementById("story").innerHTML = "";
   let createTable = `
   <table class="table">
   <thead>
@@ -164,7 +167,7 @@ function loadTable(state) {
       <tr>
         <td>Chapter ${data[i]["chapter"]}</td>
         <td>${data[i]["chapterName"]}</td>
-        <td> June </td>
+        <td>${data[i]["datePublished"]}</td>
       </tr>`;
     }
   } else {
@@ -183,10 +186,10 @@ function loadTable(state) {
     }
     for (let i = startRange; i >= endRange; i--) {
       document.getElementsByTagName("tbody")[0].innerHTML += `
-      <tr>
+      <tr onclick="readTextFile(${i})">
         <td>Chapter ${data[i]["chapter"]}</td>
         <td>${data[i]["chapterName"]}</td>
-        <td> June </td>
+        <td>${data[i]["datePublished"]}</td>
       </tr>`;
     }
   }
