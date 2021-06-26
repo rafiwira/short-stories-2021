@@ -142,14 +142,16 @@ function loadTable(state) {
   document.getElementsByTagName("tbody")[0].innerHTML = "";
   document.getElementById("page-nav").innerHTML = `
   <ul class="pagination">
-    <li class="page-item"><a class="page-link" onClick="loadTable('prev')" id="prevContent">Previous</a></li>
-    <li class="page-item"><a class="page-link" onClick="loadTable('next')" id="nextContent">Next</a></li>
+    <li class="page-item" onClick="loadTable('prev')" id="prevContent"><a class="page-link">Previous</a></li>
+    <li class="page-item" onClick="loadTable('next')" id="nextContent"><a class="page-link">Next</a></li>
   </ul>
     `;
   if (state == "next" && jsonLength - x <= 0) {
     document.getElementById("nextContent").removeAttribute("onclick");
+    document.getElementById("nextContent").className += " disabled";
   } else if (state == "prev" && jsonLength - y >= jsonLength) {
     document.getElementById("prevContent").removeAttribute("onclick");
+    document.getElementById("prevContent").className += " disabled";
   } else if (state == "next") {
     x = x + 5;
     y = y + 5;
