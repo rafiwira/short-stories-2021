@@ -186,9 +186,9 @@ function loadTable(state) {
     }
     for (let i = startRange; i >= endRange; i--) {
       document.getElementsByTagName("tbody")[0].innerHTML += `
-      <tr onclick="readTextFile(${i})">
+      <tr>
         <td>Chapter ${data[i]["chapter"]}</td>
-        <td>${data[i]["chapterName"]}</td>
+        <td><a class="link-primary"  onclick="readTextFile(${i})">${data[i]["chapterName"]}</a></td>
         <td>${data[i]["datePublished"]}</td>
       </tr>`;
     }
