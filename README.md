@@ -4,7 +4,7 @@ Created with CodeSandbox
 
 ## Notes on connecting Github pages to custom domain
 
-- Domain in CNAME file must be in all caps.
+- Domain in CNAME file must be in all caps (i.e. `WWW.EXAMPLE.COM` not `www.example.com`).
 - On your DNS management tab (this domain is served by `namecheap.com`), you must have one `CNAME record` and 4 `A Record`.
 - It may take some time (24h even) for your DNS to update.
 
