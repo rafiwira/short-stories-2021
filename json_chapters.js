@@ -41,5 +41,11 @@ var chapterData = {
     chapterName: "Light",
     filename: "Light.md",
     datePublished: "28 June 2021"
+  },
+  7: {
+    chapter: 8,
+    chapterName: "Sticks and Stones",
+    filename: "SticksAndStones.md",
+    datePublished: "4 July 2021"
   }
 };
