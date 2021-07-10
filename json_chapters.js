@@ -47,5 +47,11 @@ var chapterData = {
     chapterName: "Sticks and Stones",
     filename: "SticksAndStones.md",
     datePublished: "4 July 2021"
+  },
+  8: {
+    chapter: 9,
+    chapterName: "Kueh Mueh",
+    filename: "KuehMueh.md",
+    datePublished: "10 July 2021"
   }
 };
