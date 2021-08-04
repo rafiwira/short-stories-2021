@@ -53,5 +53,11 @@ var chapterData = {
     chapterName: "Kueh Mueh",
     filename: "KuehMueh.md",
     datePublished: "10 July 2021"
+  },
+  9: {
+    chapter: 10,
+    chapterName: "Cold",
+    filename: "Cold.md",
+    datePublished: "4 August 2021"
   }
 };
