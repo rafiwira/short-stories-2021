@@ -71,5 +71,11 @@ var chapterData = {
     chapterName: "The Thirteenth Hour",
     filename: "The Thirteenth Hour.md",
     datePublished: "13 August 2021"
+  },
+  12: {
+    chapter: 13,
+    chapterName: "Shorted",
+    filename: "Shorted.md",
+    datePublished: "19 August 2021"
   }
 };
