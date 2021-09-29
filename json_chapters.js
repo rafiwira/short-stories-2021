@@ -77,5 +77,11 @@ var chapterData = {
     chapterName: "Shorted",
     filename: "Shorted.md",
     datePublished: "19 August 2021"
+  },
+  13: {
+    chapter: 14,
+    chapterName: "Adhered",
+    filename: "Adhered.md",
+    datePublished: "29 September 2021"
   }
 };
