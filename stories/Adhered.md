@@ -18,7 +18,7 @@ I touched the wet spots and smelled it.
 
 I looked around and saw a gas nozzle with a lighter next to it. There were wet spots near it. I picked it up. 
 
-"It looks like someone fought it off." i fiddled with the nozzle.
+"It looks like someone fought it off." I fiddled with the nozzle.
 
 "You think there might be survivors?"
 
@@ -30,7 +30,7 @@ We looked around for things we needed. A portable plasma torch, an extra tank of
 
 "That should be all. Aisyah, where to?" I looked at John's breast pocket. 
 
-"We'll be going thought area B6-109. Be extra cautious. I detected some life in there."
+"We'll be going through area B6-109. Be extra cautious. I detected some life in there."
 
 Life. That could either be human or rat. 
 
